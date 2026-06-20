@@ -4,11 +4,13 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart-store';
+import { useMounted } from '@/lib/use-mounted';
 import { formatPrice } from '@/lib/utils';
 import { img, BLUR_DATA_URL } from '@/lib/images';
 import { site } from '@/lib/site.config';
 import { Button } from '@/components/ui/Button';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { QuantityStepper } from '@/components/product/QuantityStepper';
 import { useToast } from '@/components/ui/Toast';
 
@@ -24,9 +26,35 @@ export function CartView() {
   const subtotalFn = useCart((s) => s.subtotal);
   const { toast } = useToast();
 
+  const mounted = useMounted();
+
   const [promoInput, setPromoInput] = useState('');
   const [promoApplied, setPromoApplied] = useState(false);
   const [promoError, setPromoError] = useState('');
+
+  // Until the persisted cart rehydrates, render a neutral placeholder that
+  // matches the server output (avoids hydration mismatch + empty-state flash).
+  if (!mounted) {
+    return (
+      <div className="shell pb-9 pt-[120px]">
+        <Skeleton className="mb-7 h-12 w-48" />
+        <div className="grid gap-8 lg:grid-cols-golden lg:gap-9">
+          <div className="flex flex-col gap-5">
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="flex gap-4">
+                <Skeleton className="aspect-square w-20 sm:w-24" />
+                <div className="flex-1 space-y-2 py-1">
+                  <Skeleton className="h-4 w-2/3" />
+                  <Skeleton className="h-3 w-1/3" />
+                </div>
+              </div>
+            ))}
+          </div>
+          <Skeleton className="h-64 w-full" />
+        </div>
+      </div>
+    );
+  }
 
   if (items.length === 0) {
     return (
