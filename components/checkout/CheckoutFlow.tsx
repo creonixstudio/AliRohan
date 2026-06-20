@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useCart } from '@/lib/cart-store';
+import { useMounted } from '@/lib/use-mounted';
 import { formatPrice } from '@/lib/utils';
 import { img, BLUR_DATA_URL } from '@/lib/images';
 import { site } from '@/lib/site.config';
 import { Button } from '@/components/ui/Button';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { Skeleton } from '@/components/ui/Skeleton';
 
 const FLAT_SHIPPING = 12;
 
@@ -81,10 +83,27 @@ export function CheckoutFlow() {
   const subtotalFn = useCart((s) => s.subtotal);
   const clear = useCart((s) => s.clear);
 
+  const mounted = useMounted();
+
   const [stepIndex, setStepIndex] = useState(0);
   const [data, setData] = useState<FormData>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
   const [placing, setPlacing] = useState(false);
+
+  // Wait for the persisted cart to rehydrate before deciding the cart is empty
+  // (prevents hydration mismatch + a flash of the empty state on /checkout).
+  if (!mounted) {
+    return (
+      <div className="shell pb-9 pt-[120px]">
+        <Skeleton className="mb-7 h-12 w-64" />
+        <Skeleton className="mb-8 h-6 w-80" />
+        <div className="grid gap-8 lg:grid-cols-golden lg:gap-9">
+          <Skeleton className="h-72 w-full" />
+          <Skeleton className="h-64 w-full" />
+        </div>
+      </div>
+    );
+  }
 
   if (items.length === 0 && !placing) {
     return (
