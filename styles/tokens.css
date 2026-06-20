@@ -1,0 +1,25 @@
+/*
+ * VESTRA design tokens — single source of truth for color, motion + radius.
+ * Swap brand palette here; everything else references these variables.
+ *
+ * Art direction: "darkroom editorial". Warm graphite ink on a COOL bone
+ * ground (greyer than the cream cliché), greige surfaces, one restrained
+ * oxblood accent, deep-moss secondary. Deliberately not cream/terracotta,
+ * not black/acid-green, not newspaper hairline grid.
+ */
+:root {
+  --ink: #1a1714;        /* warm graphite near-black — text + UI */
+  --paper: #e9e6de;      /* cool bone ground (cooler/greyer than #F4F1EA) */
+  --clay: #d4cec3;       /* muted greige — surfaces, dividers */
+  --signature: #6e2b2b;  /* oxblood — the one confident accent, used sparingly */
+  --accent2: #36433b;    /* deep moss — secondary */
+  --muted: #6b6357;      /* muted brown-grey for meta text */
+  --line: rgba(26, 23, 20, 0.12);
+
+  /* motion */
+  --ease-house: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-micro: 180ms;
+  --dur-comp: 420ms;
+
+  --radius: 2px; /* near-flat, editorial; not the rounded-card cliché */
+}
