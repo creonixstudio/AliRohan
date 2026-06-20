@@ -15,7 +15,7 @@
 
 @layer base {
   * {
-    border-color: var(--line);
+    border-color: rgb(var(--ink) / 0.12);
   }
   html {
     scroll-behavior: smooth;
@@ -36,8 +36,8 @@
     }
   }
   body {
-    background-color: var(--paper);
-    color: var(--ink);
+    background-color: rgb(var(--paper));
+    color: rgb(var(--ink));
     font-family: var(--font-body), system-ui, sans-serif;
     font-feature-settings: 'ss01', 'cv01';
     overflow-x: hidden;
@@ -47,12 +47,12 @@
     font-weight: 500;
   }
   ::selection {
-    background: var(--signature);
-    color: var(--paper);
+    background: rgb(var(--signature));
+    color: rgb(var(--paper));
   }
   /* Visible keyboard focus — never remove */
   :focus-visible {
-    outline: 2px solid var(--signature);
+    outline: 2px solid rgb(var(--signature));
     outline-offset: 3px;
     border-radius: 1px;
   }
@@ -61,11 +61,11 @@
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--paper);
+    background: rgb(var(--paper));
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--clay);
-    border: 3px solid var(--paper);
+    background: rgb(var(--clay));
+    border: 3px solid rgb(var(--paper));
     border-radius: 99px;
   }
 }
@@ -78,7 +78,7 @@
     @apply font-mono text-caption uppercase tracking-[0.18em] text-muted;
   }
   .link-underline {
-    background-image: linear-gradient(var(--ink), var(--ink));
+    background-image: linear-gradient(rgb(var(--ink)), rgb(var(--ink)));
     background-size: 0% 1px;
     background-repeat: no-repeat;
     background-position: left bottom;

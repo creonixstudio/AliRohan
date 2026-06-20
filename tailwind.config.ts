@@ -14,13 +14,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: 'var(--ink)',
-        paper: 'var(--paper)',
-        clay: 'var(--clay)',
-        signature: 'var(--signature)',
-        accent2: 'var(--accent2)',
-        line: 'var(--line)',
-        muted: 'var(--muted)',
+        ink: 'rgb(var(--ink) / <alpha-value>)',
+        paper: 'rgb(var(--paper) / <alpha-value>)',
+        clay: 'rgb(var(--clay) / <alpha-value>)',
+        signature: 'rgb(var(--signature) / <alpha-value>)',
+        accent2: 'rgb(var(--accent2) / <alpha-value>)',
+        muted: 'rgb(var(--muted) / <alpha-value>)',
+        line: 'rgb(var(--ink) / 0.12)',
       },
       fontFamily: {
         display: ['var(--font-display)', 'Clash Display', 'system-ui', 'sans-serif'],

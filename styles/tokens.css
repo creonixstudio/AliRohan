@@ -6,15 +6,17 @@
  * ground (greyer than the cream cliché), greige surfaces, one restrained
  * oxblood accent, deep-moss secondary. Deliberately not cream/terracotta,
  * not black/acid-green, not newspaper hairline grid.
+ *
+ * Colors are stored as space-separated RGB channels so Tailwind opacity
+ * modifiers (e.g. bg-ink/40) work: tailwind maps them via rgb(var(--x) / a).
  */
 :root {
-  --ink: #1a1714;        /* warm graphite near-black — text + UI */
-  --paper: #e9e6de;      /* cool bone ground (cooler/greyer than #F4F1EA) */
-  --clay: #d4cec3;       /* muted greige — surfaces, dividers */
-  --signature: #6e2b2b;  /* oxblood — the one confident accent, used sparingly */
-  --accent2: #36433b;    /* deep moss — secondary */
-  --muted: #6b6357;      /* muted brown-grey for meta text */
-  --line: rgba(26, 23, 20, 0.12);
+  --ink: 26 23 20;        /* #1a1714 — warm graphite near-black, text + UI */
+  --paper: 233 230 222;   /* #e9e6de — cool bone ground */
+  --clay: 212 206 195;    /* #d4cec3 — muted greige, surfaces/dividers */
+  --signature: 110 43 43; /* #6e2b2b — oxblood, the one accent (sparingly) */
+  --accent2: 54 67 59;    /* #36433b — deep moss, secondary */
+  --muted: 107 99 87;     /* #6b6357 — muted brown-grey, meta text */
 
   /* motion */
   --ease-house: cubic-bezier(0.22, 1, 0.36, 1);
